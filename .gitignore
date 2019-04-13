@@ -55,3 +55,4 @@ build-iPhoneSimulator/
 .DS_Store
 .log
 /log/
+server.pid
