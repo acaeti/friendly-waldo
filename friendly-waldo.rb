@@ -44,7 +44,7 @@ get '/XMLDefault.cnf.xml' do
     xml_default_cnf = Nokogiri::XML::Builder.new do |xml|
       xml.send("Default") do
         xml.send("autoRegistrationName","AUTO-REG")
-        xml.send("autoRegistration","")
+        xml.send("autoRegistration","enabled")
         xml.send("selfProvisioningSecureMode","true")
         xml.send("adminProvisionMode","false")
         xml.send("ipAddressMode","0")
@@ -125,7 +125,7 @@ get '/XMLDefault.cnf.xml' do
     xml_default_cnf = Nokogiri::XML::Builder.new do |xml|
       xml.send("Default") do
         xml.send("autoRegistrationName","AUTO-REG")
-        xml.send("autoRegistration","")
+        xml.send("autoRegistration","enabled")
         xml.send("selfProvisioningSecureMode","true")
         xml.send("adminProvisionMode","false")
         xml.send("ipAddressMode","0")
