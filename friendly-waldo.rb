@@ -209,10 +209,67 @@ get '/XMLDefault.cnf.xml' do
   
 end
 
-get /SEP.*\.cnf\.xml/ do
+
+get /\/SEP([A-F0-9]{12})\.cnf\.xml/ do
   content_type 'text/xml'
   
-  #formatted_no_declaration = Nokogiri::XML::Node::SaveOptions::AS_XML + Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
+  mac = params['captures'].first
+  case mac
+    
+  when /\AC80084AA7A09\z/
+    firmware_load_fragment = "sip78xx"
+  when /\AC80084AA79C7\z/
+    firmware_load_fragment = "sip78xx"
+  when /\A706E6D10A338\z/
+    firmware_load_fragment = "sip7832"
+  when /\A706BB9247F28\z/
+    firmware_load_fragment = "sip7832"
+  when /\A706BB9247D58\z/
+    firmware_load_fragment = "sip7832"
+  when /\A706BB9248236\z/
+    firmware_load_fragment = "sip7832"
+  when /\AF87B20890826\z/
+    firmware_load_fragment = "sip8832"
+  when /\AC4B9CDD831FF\z/
+    firmware_load_fragment = "sip88xx"
+  when /\AF0B2E58E6814\z/
+    firmware_load_fragment = "sip88xx"
+  when /\AC4B9CDD84DEE\z/
+    firmware_load_fragment = "sip88xx"
+  when /\AC4B9CDD831C0\z/
+    firmware_load_fragment = "sip88xx"
+  when /\A74A02FC09C61\z/
+    firmware_load_fragment = "sip8845_65"
+  when /\A007686FD1C19\z/
+    firmware_load_fragment = "sip8845_65"
+  when /\A007686FD1C7D\z/
+    firmware_load_fragment = "sip8845_65"
+  when /\A007686FD1C49\z/
+    firmware_load_fragment = "sip8845_65"
+  when /\ACC9891548B24\z/
+    firmware_load_fragment = "sip88xx"
+  when /\ACC989154A1CC\z/
+    firmware_load_fragment = "sip88xx"
+  when /\ACC989154DD48\z/
+    firmware_load_fragment = "sip88xx"
+  when /\AB000B4BE5058\z/
+    firmware_load_fragment = "sip88xx"
+  when /\A2C3124C988D6\z/
+    firmware_load_fragment = "sip88xx"
+  when /\A2C3124C97D5A\z/
+    firmware_load_fragment = "sip88xx"
+  when /\AF8A5C5B2B055\z/
+    firmware_load_fragment = "sip88xx"
+  when /\A2C3124C9B519\z/
+    firmware_load_fragment = "sip88xx"
+  when /\A2C3124C98A77\z/
+    firmware_load_fragment = "sip88xx"
+  when /\A74A02FC0DE5F\z/
+    firmware_load_fragment = "sip8845_65"
+  else
+    firmware_load_fragment = "BAAAAD"
+  end
+  
   
   xml_string = %q[<?xml version="1.0" encoding="UTF-8"?>
 <device  xsi:type="axl:XIPPhone" ctiid="548" uuid="{7fe8bd6e-3d42-4ad5-1d1b-cfcb53bdc717}">
@@ -439,7 +496,7 @@ get /SEP.*\.cnf\.xml/ do
 <backgroundImageAccess>true</backgroundImageAccess>
 <callLogBlfEnabled>3</callLogBlfEnabled>
 </commonProfile>
-<loadInformation>sip78xx.12-5-1SR2-2</loadInformation>
+<loadInformation>%FWLOAD%.12-5-1SR2-2</loadInformation>
 <inactiveLoadInformation></inactiveLoadInformation>
 <vendorConfig>
 <disableSpeaker>false</disableSpeaker><disableSpeakerAndHeadset>false</disableSpeakerAndHeadset><pcPort>0</pcPort><garp>1</garp><voiceVlanAccess>0</voiceVlanAccess><spanToPCPort>1</spanToPCPort><loggingDisplay>1</loggingDisplay><recordingTone>0</recordingTone><recordingToneLocalVolume>100</recordingToneLocalVolume><recordingToneRemoteVolume>50</recordingToneRemoteVolume><recordingToneDuration></recordingToneDuration><moreKeyReversionTimer>5</moreKeyReversionTimer><lldpAssetId></lldpAssetId><powerPriority>0</powerPriority><LineKeyBarge>0</LineKeyBarge><minimumRingVolume>0</minimumRingVolume><ehookEnable>0</ehookEnable><headsetWidebandUIControl>0</headsetWidebandUIControl><headsetWidebandEnable>0</headsetWidebandEnable><recentsSoftkey>1</recentsSoftkey></vendorConfig>
@@ -560,16 +617,12 @@ get /SEP.*\.cnf\.xml/ do
 </phoneServices>
 </device>]
   
+  
+  xml_string.sub!("%FWLOAD%",firmware_load_fragment)
+  
   body xml_string
   
 end
-
-
-
-
-
-
-
 
 get /.*(\d{4})-3PCC.xml/ do
   content_type 'text/xml'
