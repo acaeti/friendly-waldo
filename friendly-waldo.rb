@@ -235,10 +235,14 @@ get /.*(\d{4})-3PCC.xml/ do
     xml.send("device") do
       xml.send("flat-profile") do
         xml.send("Trans_Auth_Rule", "ua" => "na"){
-          xml.text("http://#{SERVER_IP}/$MAU.lic")
+          xml.text("http://#{SERVER_IP}:6970/license/$MAU.lic")
         }
         xml.send("Upgrade_Rule", "ua" => "na"){
-          xml.text("http://#{SERVER_IP}/#{firmware_load_fragment}.11-2-3MPP-398.loads")
+          if(model == "8832")
+            xml.text("http://#{SERVER_IP}:6970/mpp/#{firmware_load_fragment}.11-2-3MPP-412.loads")
+          else
+            xml.text("http://#{SERVER_IP}:6970/mpp/#{firmware_load_fragment}.11-2-3MPP-398.loads")
+          end
         }
       end
       
@@ -251,9 +255,19 @@ end
 
 get "/:filename" do
   filename = params[:filename]
-  send_file "#{settings.public_folder}/#{filename}", :filename => filename, :disposition => 'attachment', :type => 'application/octet-stream'
+  if(FIRMWARE_TO_SERVE == "Enterprise")
+    send_file "#{settings.public_folder}/enterprise/#{filename}", :filename => filename, :disposition => 'attachment', :type => 'application/octet-stream'
+  elsif(FIRMWARE_TO_SERVE == "Transitional")
+    send_file "#{settings.public_folder}/transitional/#{filename}", :filename => filename, :disposition => 'attachment', :type => 'application/octet-stream'
+  end
 end
 
+get "/mpp/:filename" do
+  filename = params[:filename]
+  send_file "#{settings.public_folder}/mpp/#{filename}", :filename => filename, :disposition => 'attachment', :type => 'application/octet-stream'
+end
 
-
-
+get "/license/:filename" do
+  filename = params[:filename]
+  send_file "#{settings.public_folder}/license/#{filename}", :filename => filename, :disposition => 'attachment', :type => 'application/octet-stream'
+end
