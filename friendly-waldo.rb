@@ -163,40 +163,40 @@ get '/XMLDefault.cnf.xml' do
           end
         end
         xml.send("loadinformation36213","model" => "Cisco 7811") {
-          xml.text("sip78xx.TLexE2M-11-2-3C-4")
+          xml.text("sip78xx.TLexE2M-11-2-3C-12")
         }
         xml.send("loadinformation621","model" => "Cisco 7821"){
-          xml.text("sip78xx.TLexE2M-11-2-3C-4")
+          xml.text("sip78xx.TLexE2M-11-2-3C-12")
         }
         xml.send("loadinformation622","model" => "Cisco 7841"){
-          xml.text("sip78xx.TLexE2M-11-2-3C-4")
+          xml.text("sip78xx.TLexE2M-11-2-3C-12")
         }
         xml.send("loadinformation623","model" => "Cisco 7861"){
-          xml.text("sip78xx.TLexE2M-11-2-3C-4")
+          xml.text("sip78xx.TLexE2M-11-2-3C-12")
         }
         xml.send("loadinformation36247","model" => "Cisco 7832"){
-          xml.text("sip7832.TLexE2M-11-2-3C-4")
+          xml.text("sip7832.TLexE2M-11-2-3C-12")
         }
         xml.send("loadinformation36258","model" => "Cisco 8832"){
-          xml.text("sip8832.TLexE2M-11-2-3C-4")
+          xml.text("sip8832.TLexE2M-11-2-3C-12")
         }
         xml.send("loadinformation36217","model" => "Cisco 8811"){
-          xml.text("sip88xx.TLexE2M-11-2-3C-4")
+          xml.text("sip88xx.TLexE2M-11-2-3C-12")
         }
         xml.send("loadinformation683","model" => "Cisco 8841"){
-          xml.text("sip88xx.TLexE2M-11-2-3C-4")
+          xml.text("sip88xx.TLexE2M-11-2-3C-12")
         }
         xml.send("loadinformation684","model" => "Cisco 8851"){
-          xml.text("sip88xx.TLexE2M-11-2-3C-4")
+          xml.text("sip88xx.TLexE2M-11-2-3C-12")
         }
         xml.send("loadinformation685","model" => "Cisco 8861"){
-          xml.text("sip88xx.TLexE2M-11-2-3C-4")
+          xml.text("sip88xx.TLexE2M-11-2-3C-12")
         }
         xml.send("loadinformation36224","model" => "Cisco 8845"){
-          xml.text("sip8845_65.TLexE2M-11-2-3C-4")
+          xml.text("sip8845_65.TLexE2M-11-2-3C-12")
         }
         xml.send("loadinformation36225","model" => "Cisco 8865"){
-          xml.text("sip8845_65.TLexE2M-11-2-3C-4")
+          xml.text("sip8845_65.TLexE2M-11-2-3C-12")
         }
       end
     end
